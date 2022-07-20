@@ -19,3 +19,5 @@ Fullstack application, where you can post your ideas for other peoples and see o
 
 
 live preview: 
+
+https://ideas-web.herokuapp.com/idea
