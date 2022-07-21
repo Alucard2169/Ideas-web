@@ -1,0 +1,32 @@
+{
+  "name": "idea-web",
+  "version": "1.0.0",
+  "description": "A website where users can share their ideas",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alucard2169/Ideas-web.git"
+  },
+  "keywords": [
+    "nodeJS",
+    "expressJS",
+    "Mongodb"
+  ],
+  "author": "Alucard2169",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alucard2169/Idea-web/issues"
+  },
+  "homepage": "https://github.com/Alucard2169/Idea-web#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.4.5"
+  }
+}

@@ -1,0 +1,15 @@
+<%- include("./partials/head")%>
+
+<form action="/" method="POST" class="addNewForm">
+    <label for="username">
+        Username: 
+    </label>
+    <input type="text" id="username" name="username" required>
+    <label for="idea">Idea: </label>
+    <textarea name="idea" id="idea" cols="30" rows="10"></textarea>
+    <input type="datetime" style="display: none;" name="time" id="time" value="<%= Date() %>">
+    <button>Submit</button>
+</form>
+
+<%- include("./partials/foot")%>
+

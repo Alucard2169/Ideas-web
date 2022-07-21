@@ -1,0 +1,9 @@
+<%- include("./partials/head") %>
+<div class="details">
+    <h1 class="user"><%= idea.username %> </h1>
+    <p class="fullIdea"><%= idea.idea %></p>
+    <span class="timePassed"><%= moment(idea.time).fromNow(true)%></span>
+</div>
+
+
+<%- include("./partials/foot")%>
