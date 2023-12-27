@@ -1,0 +1,22 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ideapot</title>
+  <link href="/styles.css" rel="stylesheet"/>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <nav>
+            <button id="home"><a href="/"><img src="ghost-solid.svg" alt="home button"/></a></button>
+            <button id="loginBtn"><a href="/login">Login <img class="icon" src="/circle-plus-solid.svg"/></a></button>
+            <div class="leftNavSection">
+                <button id="logoutBtn" class="logoutBtn">Logout <img class="icon" src="/right-from-bracket-solid.svg"/></button>
+                <button id="createIdeaBtn"><a href="/createIdea">Create Idea <img class="icon" src="/circle-plus-solid.svg"/></a></button>
+                <button class="profileBtn" id="profileBtn"><a href="/profile"><img src="/user-solid.svg" alt="profile button"/></a></button>
+            </div>
+        </nav>
+    </header>

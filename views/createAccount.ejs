@@ -1,0 +1,21 @@
+<%- include('./partials/header.ejs') %>
+
+    <div class="formContainer">
+        <p id="prompt"></p>
+        <h1>Create a new Account</h1>
+        <form  id="createUserForm">
+            <label for="username">
+                <span>Usename</span>
+                <input type="text" id="username" name="username" required>
+            </label>
+            <label for="password">
+                <span>Password</span>
+                <input name="password" type="password" id="password" required>
+            </label>
+            <button>Submit</button>
+        </form>
+             <a href="/login">Already a User?</a>
+    </div>
+  
+</body>
+</html>

@@ -1,0 +1,272 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+
+a, a:hover, a:visited, a:focus, a:active {
+   text-decoration: none;
+   color: inherit;
+   outline: none;
+   cursor: pointer;
+}
+
+button{
+    cursor: pointer;
+}
+body,html{
+    background-color: rgb(20, 20, 20);
+}
+
+
+.header{
+    width: 1005;
+    background-color: bisque;
+    padding: .3rem 0;
+    nav{
+        display: flex;
+
+        .leftNavSection{
+            margin-left: auto;
+        }
+
+        .logoutBtn{
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        button{
+             border: none;
+            padding: .5rem;           
+            color: white;
+            background-color: rgb(20,20,20);
+
+          a{
+              display: flex;
+              gap:1rem;
+              align-items: center;
+           
+           
+
+
+            .icon{
+                background-color: rgb(238, 46, 46);
+                padding: 5px;
+                border-radius: 100px;
+            }
+          }
+        }
+
+
+        div{
+            display: flex;
+            gap: 1rem;
+
+
+            .profileBtn{
+                background-color: rgb(238, 46, 46);
+            }
+        }
+    }
+}
+
+
+.mainContainer{
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+
+
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: white;
+    padding: 1rem;
+
+    ul{
+        display: flex;
+        gap: 1rem;
+        align-items: baseline;
+
+        .username{
+            background-color: black;
+            color: white;
+            padding: .1rem .5rem;
+        }
+    }
+
+    .lowerbar{
+        display: flex;
+        justify-content: space-between;
+
+        .votingSection{
+            background-color: black;
+            padding: .1rem 1rem;
+            display: flex;  
+            align-items: center;          
+
+            .up,.down{
+                width: 1.1rem;
+                height: 1.1rem;
+                border: none;
+                cursor: pointer;
+            }
+
+            .up{
+                background-color: rgb(230, 106, 61);
+                
+            }
+            .down{
+                background-color: rgb(68, 68, 230);
+            }
+
+            
+
+            .voteRe{
+                margin-inline: 1rem;
+                background-color: rgb(238, 46, 46);
+                padding: .1rem 1rem;
+            }
+        }
+    }
+}
+
+
+.formContainer{
+    width: 50%;
+    padding-top: 5%;
+    margin: auto;
+    position: relative;
+    h1{
+        color:white;
+        font-size: 1.5rem;
+    }
+
+    p{
+        position: absolute;
+        opacity: 0;
+        margin-inline: auto;
+        inset: 5% 0 0 0;
+        width: 50%;
+        padding: .5rem 0;
+        border-radius: 10px;
+        height: fit-content;
+        color:rgb(20, 20, 20);
+        text-align: center;
+        transition: opacity 100ms ease-in-out;
+    }
+
+    form{
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        label{
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+
+
+            span{
+                background-color: white;
+                color: black;
+                width: fit-content;
+                padding: .5rem .2rem;
+            }
+
+            input,textarea{
+                padding: 1rem;
+                border-radius: 10px;
+                background-color: black;
+                color: white;
+                outline: 1px white solid;
+                border: none;
+            }
+
+        
+        }
+            button{
+                background-color: rgb(238, 46, 46);
+                color: black;
+                border: none;
+                padding: .2rem;
+                font-size: 1rem;
+            }
+    }
+
+    a{
+    
+        color: rgb(70, 70, 250);
+    }
+}
+
+
+.profileContainer{
+    padding: 5%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 2rem;
+    .userSection{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        height: fit-content;
+        background-color:bisque;
+
+        h2{
+            padding: .5rem;
+            background-color: black;
+            color: rgb(238, 46, 46);
+            border-radius: 10px;
+        }
+
+
+        p{
+            background-color: black;
+            color:bisque;
+            border-radius: 10px;
+            padding: .5rem;
+        }
+
+        button{
+            border: none;
+            padding: .5rem;
+            border-radius: 10px;
+            background-color: rgb(238, 46, 46);
+            color: white;
+            transition: color 100ms ease-in-out;
+            &:hover{
+                color: black;
+            }
+        }
+    }
+
+    .ideasContainer{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap:1rem;
+    }
+}
+
+
+
+
+/* utility classes */
+
+.error{
+    opacity: 1 !important;
+    background-color: rgb(238, 46, 46) !important;
+}
+
+.success{
+    opacity: 1 !important;
+    background-color: greenyellow !important;
+}
