@@ -1,12 +1,14 @@
 const bcrypt = require("bcrypt");
 const UserAccount = require("../models/userModel.js");
-const jwt = require("jsonwebtoken")
+const IdeaSchema = require("../models/ideaModel.js")
+const jwt = require("jsonwebtoken");
+const moment = require("moment");
 
 
 
 const initial = async (req, res) => {
-
-  const token = req.cookies.token;
+ 
+  const token = req.cookies.session;
 
  if (token) {
    try {
@@ -111,5 +113,82 @@ const logout = (req, res) => {
   }
 };
 
+const addIdea = async (req,res) => {
+  try {
+    const { id,title, body } = req.body;
 
-module.exports = {initial,signup,login,logout}
+    
+    const newIdea = new IdeaSchema({
+      title,
+      body,
+      user_id: id,
+    });
+    await newIdea.save();
+
+
+    res
+      .status(201)
+      .json({ message: "Idea created successfully", Idea: newIdea });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "An error occurred" });
+  }
+}
+
+
+
+const getIdea = (req, res) => {
+
+  IdeaSchema.find()
+    .then((result) => {
+      res.render("home", { ideas : result ,moment: moment});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
+const updateVoteCount = async (req, res) => {
+  try {
+    // Extract the idea ID from the request parameters
+    const ideaId = req.params.id;
+
+    // Find the idea in the database
+    const idea = await IdeaSchema.findById(ideaId);
+
+    if (!idea) {
+      return res.status(400).json({ message: "Idea not found" });
+    }
+
+    // Extract the new vote count from the request body
+    const { upvote, downvote } = req.body;
+
+    // Update the vote count
+    idea.upvote += upvote || 0;
+    idea.downvote += downvote || 0;
+
+    // Save the updated idea to the database
+    await idea.save();
+
+    res.status(200).json({ message: "Vote count updated successfully", idea });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "An error occurred" });
+  }
+};
+
+
+
+
+
+module.exports = {
+  initial,
+  signup,
+  login,
+  logout,
+  addIdea,
+  getIdea,
+  updateVoteCount,
+};

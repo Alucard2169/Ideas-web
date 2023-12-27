@@ -1,9 +1,32 @@
 <%- include('./partials/header.ejs') %>
-  
 
-    <main class="mainContainer">
-        <%- include("./components/cards.ejs") %>
-        <%- include("./components/cards.ejs") %>
-    </main>
+<main class="mainContainer">
+ <% if (ideas && ideas.length > 0) { %>
+  <% ideas.forEach((idea) => { %>
+    <div class="card" data-key=<%= idea._id %>>
+      <ul>
+        <li><img src="/ghost-solid.svg" alt="project mark"/></li>
+        <li class="username"><%= idea.title %></li>
+      </ul>
+      <p>
+        <%= idea.body %>
+      </p>
+      <div class="lowerbar">
+        <div class="votingSection">
+          <button class="up" id="upvote"><img src="/arrow-up-solid.svg" alt="upvote button"/></button>
+          <p class="voteRe"><span><%= idea.upvote %></span> | <span><%= idea.downvote %></span></p>
+          <button class="down" id="downvote"><img src="/arrow-down-solid.svg" alt="upvote button"/></button>
+        </div>
+        <div>
+          <span>  <%= moment(idea.createdAt).fromNow(true) %></span>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+ <% } else { %>
+  <p class="noideas">No ideas yet.</p>
+ <% } %>
+</main>
+
 </body>
 </html>

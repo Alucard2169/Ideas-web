@@ -78,7 +78,7 @@ body,html{
     grid-template-columns: repeat(4,1fr);
     gap: 2rem;
     justify-content: space-between;
-}
+
 
 
 
@@ -101,18 +101,21 @@ body,html{
         }
     }
 
+    p{
+        word-break: break-all;
+    }
     .lowerbar{
         display: flex;
         justify-content: space-between;
 
         .votingSection{
             background-color: black;
-            padding: .1rem 1rem;
+            padding: .1rem .5rem;
             display: flex;  
             align-items: center;          
 
             .up,.down{
-                width: 1.1rem;
+                width: 1rem;
                 height: 1.1rem;
                 border: none;
                 cursor: pointer;
@@ -131,11 +134,15 @@ body,html{
             .voteRe{
                 margin-inline: 1rem;
                 background-color: rgb(238, 46, 46);
-                padding: .1rem 1rem;
+                padding: .1rem .5rem;
             }
         }
     }
 }
+}
+
+
+
 
 
 .formContainer{
@@ -269,4 +276,12 @@ body,html{
 .success{
     opacity: 1 !important;
     background-color: greenyellow !important;
+}
+
+
+.noideas{
+    background-color: rgb(238, 46, 46);
+    color: rgb(20, 20, 20);
+    padding: .5rem 1rem;
+    border-radius: 10px;
 }

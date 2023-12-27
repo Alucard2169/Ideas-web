@@ -1,13 +1,19 @@
 const router = require("express").Router();
-const { initial,signup, login, logout } = require("../controller/controller");
+const jwt = require("jsonwebtoken")
+const { initial,signup, login, logout, addIdea, getIdea,updateVoteCount } = require("../controller/controller");
 
 
 //----RENDER PAGES----//
-router.get("/", (req, res) => {
-  res.render("home")
-});
+router.get("/", getIdea);
 router.get("/createIdea", (req, res) => {
-  res.render("createIdeas")
+  
+  const token = req.cookies.session;
+  if (token) {
+      res.render("createIdeas");
+  } else {
+    res.redirect("/")
+  }
+
 })
 router.get("/createAccount", (req, res) => {
   res.render("createAccount")
@@ -15,9 +21,8 @@ router.get("/createAccount", (req, res) => {
 router.get("/login", (req, res) => {
   res.render("login")
 })
-router.get("/profile", (req, res) => {
-  res.render("profile")
-})
+
+
 
 
 //----AUTH----//
@@ -27,6 +32,10 @@ router.post("/addUser", signup);
 router.post("/loginUser", login);
 router.get("/logout", logout)
 
+
+//----IDEA----//
+router.post("/saveIdea", addIdea);
+router.put("/ideas/:id", updateVoteCount);
 
 
 module.exports = router;
