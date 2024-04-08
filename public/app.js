@@ -159,7 +159,7 @@ document.querySelectorAll('.card').forEach((card) => {
    });
 
    if (response.ok) {
-     let prevCount = +upvoteDisplay.textContent;
+     let prevCount = +(upvoteDisplay.textContent) || 0;
      upvoteDisplay.textContent = prevCount + 1;
    } else {
      alert('Failed to upvote idea');
@@ -176,7 +176,7 @@ document.querySelectorAll('.card').forEach((card) => {
    });
 
    if (response.ok) {
-    let prevCount = +downvoteDisplay.textContent;
+    let prevCount = +(downvoteDisplay.textContent) || 0;
       downvoteDisplay.textContent += prevCount + 1;
     } else {
      alert('Failed to downvote idea');
