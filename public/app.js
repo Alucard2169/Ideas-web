@@ -6,7 +6,8 @@ let isLoggedIn = false;
 const loginBtn = document.getElementById("loginBtn")
 const createIdeaBtn = document.getElementById("createIdeaBtn");
 const logoutBtn = document.getElementById('logoutBtn')
-
+const upvoteDisplay = document.getElementById("upvoteDisplay")
+const downvoteDisplay = document.getElementById("downvoteDisplay")
 
 
 
@@ -158,7 +159,8 @@ document.querySelectorAll('.card').forEach((card) => {
    });
 
    if (response.ok) {
-     location.reload();
+     let prevCount = +upvoteDisplay.textContent;
+     upvoteDisplay.textContent = prevCount + 1;
    } else {
      alert('Failed to upvote idea');
    }
@@ -174,8 +176,9 @@ document.querySelectorAll('.card').forEach((card) => {
    });
 
    if (response.ok) {
-     location.reload();
-   } else {
+    let prevCount = +downvoteDisplay.textContent;
+      downvoteDisplay.textContent += prevCount + 1;
+    } else {
      alert('Failed to downvote idea');
    }
  });
