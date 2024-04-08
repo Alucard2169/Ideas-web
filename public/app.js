@@ -11,8 +11,8 @@ const downvoteDisplay = document.getElementById("downvoteDisplay")
 
 
 
-let user;
-console.log(user)
+let user = null;
+
 
 const afterLoginAttempt = (status) => {
   
@@ -142,44 +142,55 @@ ideaForm &&
 
 
 
-
-    // Add event listeners to all cards
+// Add event listeners to all cards
 document.querySelectorAll('.card').forEach((card) => {
- // Get the idea ID from the data-key attribute
- const ideaId = card.dataset.key;
+  // Get the idea ID from the data-key attribute
+  const ideaId = card.dataset.key;
 
- // Add event listeners to the upvote and downvote buttons
- card.querySelector('.up').addEventListener('click', async (e) => {
-   e.preventDefault();
+  // keep track of upvote and downvote
+  let isUpvoted = false;
+  let isDownvoted = false;
 
-   const response = await fetch(`/ideas/${ideaId}`, {
-     method: 'PUT',
-     headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify({ upvote: 1 }),
-   });
+  // Add event listeners to the upvote and downvote buttons
+  card.querySelector('.up').addEventListener('click', async (e) => {
+    if (!user) {
+      window.location.href = "/login";
+      return;
+    }
 
-   if (response.ok) {
-     let prevCount = +(upvoteDisplay.textContent) || 0;
-     upvoteDisplay.textContent = prevCount + 1;
-   } else {
-     alert('Failed to upvote idea');
-   }
- });
+    const response = await fetch(`/ideas/${ideaId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ upvote: isUpvoted ? -1 : 1 }), // Toggle upvote
+    });
 
- card.querySelector('.down').addEventListener('click', async (e) => {
-   e.preventDefault();
-
-   const response = await fetch(`/ideas/${ideaId}`, {
-     method: 'PUT',
-     headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify({ downvote: 1 }),
-   });
-
-   if (response.ok) {
-    let prevCount = +(downvoteDisplay.textContent) || 0;
-      downvoteDisplay.textContent += prevCount + 1;
+    if (response.ok) {
+      let prevCount = +(upvoteDisplay.textContent) || 0;
+      upvoteDisplay.textContent = isUpvoted ? prevCount - 1 : prevCount + 1; // Update count
+      isUpvoted = !isUpvoted; // Toggle upvote state
     } else {
-     alert('Failed to downvote idea');
-   }
- });
+      alert('Failed to upvote idea');
+    }
+  });
+
+  card.querySelector('.down').addEventListener('click', async (e) => {
+    if (!user) {
+      window.location.href = "/login";
+      return;
+    }
+
+    const response = await fetch(`/ideas/${ideaId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ downvote: isDownvoted ? -1 : 1 }), // Toggle downvote
+    });
+
+    if (response.ok) {
+      let prevCount = +(downvoteDisplay.textContent) || 0;
+      downvoteDisplay.textContent = isDownvoted ? prevCount - 1 : prevCount + 1; // Update count
+      isDownvoted = !isDownvoted; // Toggle downvote state
+    } else {
+      alert('Failed to downvote idea');
+    }
+  });
 });

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = require("./router/router");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 2000;
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
@@ -25,5 +25,4 @@ mongoose
   })
   .catch((err) => {
     console.error("Could not connect to MongoDB...", err);
-    // Consider adding more robust error handling here
   });
